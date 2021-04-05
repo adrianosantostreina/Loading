@@ -1,0 +1,9 @@
+{
+	"name": "loading",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "./source",
+	"projects": [],
+	"dependencies": {}
+}
