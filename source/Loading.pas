@@ -30,51 +30,63 @@ type
     class var Animation       : TFloatAnimation;
     class var AnimationMaior  : TFloatAnimation;
     class var KeyUp           : TKeyEvent;
-    class procedure OnNewKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
-      Shift: TShiftState);
+    class procedure OnNewKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+    class procedure DoOnInitialization;
   public
+    class procedure ChangeMessage(const AMessage : string);
     class procedure Show(const AMessage : string; AForm: TFMXObject = nil);
-    class procedure Hide(const AForm: TForm);
-
+    class procedure Hide;
   end;
 
 implementation
 
 { TLoading }
 
-
-class procedure TLoading.Hide(const AForm: TForm);
+class procedure TLoading.ChangeMessage(const AMessage: string);
 begin
-  if Assigned(Layout) then
+  {
+  We don't need the first Synchronize param, so we are not filling it
+  }
+  TThread.Synchronize(nil,
+  procedure
   begin
-    try
-      if Assigned(MessageLoad) then
-        MessageLoad.DisposeOf;
+    if Assigned(MessageLoad) then
+      MessageLoad.Text := AMessage;
+  end);
+end;
 
-      if Assigned(Animation) then
-        Animation.DisposeOf;
-
-      if Assigned(ArcLoad) then
-        ArcLoad.DisposeOf;
-
-      if Assigned(Background) then
-        Background.DisposeOf;
-
-      if Assigned(Layout) then
-        Layout.DisposeOf;
-    except
-
-    end;
-  end;
+class procedure TLoading.DoOnInitialization;
+begin
+  {
+  Initializing all needed component
+  }
 
   MessageLoad   := nil;
   Animation     := nil;
+  ArcLoadMaior := nil;
   ArcLoad       := nil;
   Layout        := nil;
   Background    := nil;
+  AnimationMaior := nil;
+end;
 
-  if Assigned(Application.MainForm) and Assigned(KeyUp) then
-    Application.MainForm.OnKeyUp := KeyUp;
+class procedure TLoading.Hide;
+begin
+  try
+    try
+      if Assigned(Layout) then
+        Layout.DisposeOf;
+      if Assigned(Background) then
+        Background.DisposeOf;
+    except
+      // Do not do anything
+    end;
+  finally
+    DoOnInitialization;
+
+    if Assigned(Application.MainForm) and Assigned(KeyUp) then
+      Application.MainForm.OnKeyUp := KeyUp; // Enxchanging for old event
+  end;
 end;
 
 class procedure TLoading.OnNewKeyUp(Sender: TObject; var Key: Word;
@@ -88,11 +100,18 @@ class procedure TLoading.Show(const AMessage: string; AForm: TFMXObject = nil);
 var
   FService: IFMXVirtualKeyboardService;
 begin
+  {
+  Do not do anything if it is already showing up
+  }
+  if Assigned(Layout) then
+    Exit;
+
+  Hide;
   if AForm = nil then
     AForm := Application.MainForm;
 
-  KeyUp                                    := Application.MainForm.OnKeyUp; // Guardo o evento antigo
-  Application.MainForm.OnKeyUp             := OnNewKeyUp;    // Passo para ele um novo evento
+  KeyUp                                    := Application.MainForm.OnKeyUp; // Keep safe the old event
+  Application.MainForm.OnKeyUp             := OnNewKeyUp;    // Exchanging the event
   //BackGround
   Background                               := TRectangle.Create(AForm);
   Background.Opacity                       := 0.6;
@@ -116,7 +135,7 @@ begin
   Layout.Visible                           := True;
 
   //Arco Menor
-  ArcLoad                                  := TArc.Create(AForm);
+  ArcLoad                                  := TArc.Create(Layout);
   ArcLoad.Opacity                          := 0.6;
   ArcLoad.Visible                          := true;
   ArcLoad.Parent                           := Layout;
@@ -131,7 +150,7 @@ begin
   ArcLoad.Position.Y                       := 0;
 
   //Animation
-  Animation                                := TFloatAnimation.Create(AForm);
+  Animation                                := TFloatAnimation.Create(ArcLoad);
   Animation.Parent                         := ArcLoad;
   Animation.StartValue                     := 0;
   Animation.StopValue                      := 360;
@@ -143,7 +162,7 @@ begin
   Animation.Start;
 
   //Arco Maior
-  ArcLoadMaior                             := TArc.Create(AForm);
+  ArcLoadMaior                             := TArc.Create(Layout);
   ArcLoadMaior.Opacity                     := 0.6;
   ArcLoadMaior.Visible                     := true;
   ArcLoadMaior.Parent                      := Layout;
@@ -158,7 +177,7 @@ begin
   ArcLoadMaior.Position.Y                  := 0;
 
   //Animation
-  AnimationMaior                           := TFloatAnimation.Create(AForm);
+  AnimationMaior                           := TFloatAnimation.Create(ArcLoadMaior);
   AnimationMaior.Parent                    := ArcLoadMaior;
   AnimationMaior.StartValue                := 0;
   AnimationMaior.StopValue                 := 360;
@@ -171,7 +190,7 @@ begin
   AnimationMaior.Start;
 
   // Label do texto...
-  MessageLoad                              := TLabel.Create(AForm);
+  MessageLoad                              := TLabel.Create(Layout);
   MessageLoad.Opacity                      := 0.6;
   MessageLoad.Parent                       := Layout;
   MessageLoad.Align                        := TAlignLayout.Center;
@@ -198,9 +217,10 @@ begin
   TPlatformServices.Current.SupportsPlatformService(IFMXVirtualKeyboardService, IInterface(FService));
   if (FService <> nil) then
     FService.HideVirtualKeyboard;
-
   FService := nil;
 end;
 
+initialization
+  TLoading.DoOnInitialization;
 
 end.
