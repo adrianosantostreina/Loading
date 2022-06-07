@@ -47,7 +47,7 @@ end;
 
 Compile the project, run it and click the Load button.<br>
 <p align="center">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print.png">
 </p>  
 
 ## Change Messaging
@@ -92,8 +92,8 @@ end;
 ```
 
 <p align="center">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print3.png">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print4.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print3.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print4.png">
 </p>  
 
 ## Customizing the Load Circle
@@ -118,7 +118,7 @@ The Show method contains all the code to create the circles at runtime. Just mak
 ```
 
 <p align="center">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print2.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print2.png">
 </p>
 
 
