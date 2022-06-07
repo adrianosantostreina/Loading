@@ -57,6 +57,21 @@ If you are interested in modifying the Loading colors or increasing/decreasing t
 
 > ** Make a backup of Loading.pas if you want to keep your customizations. New installations and/or updates through Boss will cause the unit to be downloaded with the default values from our GitHub
 
+Open the Loading.pas unit and find the Show method
+```delphi
+class procedure TLoading.Show(const AMessage: string; AForm: TFMXObject = nil);
+```
+
+The Show method contains all the code to create the circles at runtime. Just make adjustments where you want.
+```delphi
+  [...]
+  //Arco menor (Inner Arc)
+  ArcLoad.Stroke.Color                     := TAlphaColorRec.White;
+
+  [...]
+  //Arco maior (Outer ARc)
+  ArcLoadMaior.Stroke.Color                := TAlphaColorRec.White;;
+```
 
 
 ## Documentation Languages
