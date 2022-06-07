@@ -52,6 +52,11 @@ Compile the project, run it and click the Load button.<br>
   <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
 </p>  
 
+## Customizing the Load Circle
+If you are interested in modifying the Loading colors or increasing/decreasing the radius of the circles, it is entirely possible**.
+
+> ** Make a backup of Loading.pas if you want to keep your customizations. New installations and/or updates through Boss will cause the unit to be downloaded with the default values from our GitHub
+
 
 
 ## Documentation Languages
