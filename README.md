@@ -94,7 +94,6 @@ end;
 <p align="center">
   <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print3.png">
   <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print4.png">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print5.png">
 </p>  
 
 ## Customizing the Load Circle

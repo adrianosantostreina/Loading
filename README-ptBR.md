@@ -1,103 +1,131 @@
 <p align="center">
-  <a href="https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/logo.png">
-    <img alt="LoadPhotoFromURL" src="https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/logo.png">
+  <a href="https://github.com/adrianosantostreina/Loading/blob/main/image/logo.png">
+    <img alt="Loading" src="https://github.com/adrianosantostreina/Loading/blob/main/image/logo.png">
   </a>
 </p>
 
-# LoadPhotoFromURL
-Essa classe foi criada para facilitar o carregamento de imagens e miniaturas usando a URL do arquivo.
+# Carregando
+Esta classe destina-se a mostrar uma imagem de carregamento na tela do dispositivo.
 
 ## Instalação
-Basta declarar no Library Path do seu Delphi o caminho da pasta SOURCE da biblioteca, ou se preferir, você pode usar o Boss (gerenciador de dependências do Delphi) para realizar a instalação:
+Basta cadastrar no Library Path do seu Delphi o caminho da pasta SOURCE da biblioteca, ou se preferir, você pode usar o Boss (gerenciador de dependências do Delphi) para realizar a instalação:
 ```
-boss install github.com/adrianosantostreina/LoadPhotoFromURL
+chefe instale github.com/adrianosantostreina/Loading
 ```
 
-## Uso
-Declare uBitmapHelper na seção Uses da unit onde você deseja fazer a chamada para o método da classe.
-```delphi
-use
-   uBitmapHelper;
-```
-Em seguida, basta adicionar um componente do tipo TImage ao formulário ou criar uma variável desse tipo se desejar.
+## Usar
+Declare Loading na seção Uses da unidade onde você deseja fazer a chamada para o método da classe.
 
-## Carregando uma imagem em tamanho real
 ```delphi
-procedure TForm5.Button1Click(Sender: TObject);
+usar
+   Carregando;
+```
+
+<ul>
+  <li>Arraste um controle TButtom para o formulário</li>
+  <li>Arraste um controle TTimer para o formulário*</li>
+  <li>Defina a propriedade Enable como False no TTimer</li>
+  <li>Codifique o evento OnClick do TButtom conforme abaixo</li>
+  <li>Codifique o evento OnTimer do Ttimer conforme abaixo</li>
+</ul>
+
+*O uso de Timer neste exemplo é meramente didático, prefira usar TThreads ao invés de Timers
+
+```delphi
+procedimento TForm2.Button1Click(Remetente: TObject);
+começar
+  TLoading.Show('Carregando cliente...');
+  Timer1.Enabled := Verdadeiro;
+fim;
+
+procedimento TForm2.Timer1Timer(Remetente: TObject);
+começar
+  TLoading.Hide;
+  Timer1.Enabled := False;
+fim;
+```
+
+Compile o projeto, execute-o e clique no botão Carregar.<br>
+<p align="center">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
+</p>
+
+## Alterar mensagens
+Caso seja necessário modificar a mensagem durante a exibição do Loading, basta utilizar o método ChangeMessage passando a nova mensagem. Use o método Synchornize para isso.
+
+<ul>
+  <li>Arraste um novo controle TButtom para o formulário</li>
+  <li>Arraste um novo controle TTimer para o formulário*</li>
+  <li>Codifique o evento OnClick do TButtom conforme abaixo</li>
+  <li>Codifique o evento OnTimer do Ttimer conforme abaixo</li>
+</ul>
+
+```delphi
+[...]
+  private
+    LTime : Inteiro;
+[...]
+
+procedure TForm2.ChangeClick(Sender: TObject);
 begin
-  Image1.Bitmap := nil;
-  Image1.Bitmap.LoadFromUrl('https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/mizuno1.jpg');
+  TLoading.Show('Carregando cliente...');
+  Timer2.Enabled := True;
+end;
+
+[...]
+
+procedure TForm2.Timer2Timer(Sender: TObject);
+begin
+  Inc(LTime);
+  if LTime = 2 then
+    TLoading.ChangeMessage('Carregando produtos...')
+  else if LTime = 5 then
+    TLoading.ChangeMessage('Carregando configurações...')
+  else if LTime = 7 then
+    TLoading.ChangeMessage('Terminando...')
+  else if LTime = 10 then
+  begin
+    TLoading.Hide;
+    Timer2.Enabled := False;
+  end;
 end;
 ```
 
-## Carregando uma miniatura de imagem
+<p align="center">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print3.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print4.png">
+</p>
+
+## Personalizando o Círculo de Carga
+Se você estiver interessado em modificar as cores de carregamento ou aumentar/diminuir o raio dos círculos, é perfeitamente possível**.
+
+> ** Faça um backup do Loading.pas se quiser manter suas personalizações. Novas instalações e/ou atualizações através do Boss farão com que a unidade seja baixada com os valores padrão do nosso GitHub
+
+Abra a unidade Loading.pas e encontre o método Show
 ```delphi
-procedure TForm5.Button2Click(Sender: TObject);
-begin
-  Image1.Bitmap := nil;
-  Image1.Bitmap.LoadThumbnailFromUrl('https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/mizuno1.jpg', 50, 50);
-end;
+procedimento de classe TLoading.Show(const AMessage: string; AForm: TFMXObject = nil);
 ```
 
-## Carregando várias imagens ao mesmo tempo
-* Crie uma lista de URLs
+O método Show contém todo o código para criar os círculos em tempo de execução. Basta fazer ajustes onde quiser.
 ```delphi
-procedure TForm5.Button3Click(Sender: TObject);
-var
-  LThread: TThread;
-begin
-  LThread :=
-    TThread.CreateAnonymousThread(
-    procedure()
-    var
-      I: Integer;
-    begin
-      TThread.Synchronize(
-        TThread.CurrentThread,
-        procedure()
-        begin
-          Image1.BeginUpdate;
-          Image2.BeginUpdate;
-          Image3.BeginUpdate;
-          Image4.BeginUpdate;
+  [...]
+  //Arco menor (Inner Arc)
+  ArcLoad.Stroke.Color := TAlphaColorRec.White;
 
-          Image1.Bitmap := nil;
-          Image2.Bitmap := nil;
-          Image3.Bitmap := nil;
-          Image4.Bitmap := nil;
-        end
-        );
-
-      for I := 0 to Pred(ListBox1.Items.Count) do
-      begin
-        TThread.Synchronize(
-          TThread.CurrentThread,
-          procedure()
-          begin
-            //
-            case I of
-              1: Image2.Bitmap.LoadFromUrl('https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/mizuno1.jpg');
-              0: Image1.Bitmap.LoadFromUrl('https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/mizuno2.jpg');
-              2: Image3.Bitmap.LoadFromUrl('https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/mizuno3.jpg');
-              3: Image4.Bitmap.LoadFromUrl('https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/image/mizuno4.jpg');
-            end;
-          end
-        )
-      end;
-
-      Image1.EndUpdate;
-      Image2.EndUpdate;
-      Image3.EndUpdate;
-      Image4.EndUpdate;
-    end
-    );
-  LThread.Start;
-end;
+  [...]
+  //Arco maior (Arco Exterior)
+  ArcLoadMaior.Stroke.Color := TAlphaColorRec.White;;
 ```
 
-## Documentation Languages
-[English (en)](https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/README.md)<br>
-[Português (ptBR)](https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/README-ptBR.md)<br>
+<p align="center">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print2.png">
+</p>
+
+
+
+## Idiomas da documentação
+[Inglês (pt)](https://github.com/adrianosantostreina/Loading/blob/main/README.md)<br>
+[Português (ptBR)](https://github.com/adrianosantostreina/Loading/blob/main/README-ptBR.md)<br>
 
 ## ⚠️ Licença
-`LoadPhotoFromURL` é uma biblioteca gratuita e de código aberto licenciado sob a [Licença MIT](https://github.com/adrianosantostreina/LoadPhotoFromURL/blob/main/LICENSE.md).
+`Loading` é uma biblioteca gratuita e de código aberto licenciada sob a [Licença MIT](https://github.com/adrianosantostreina/Loading/blob/main/LICENSE.md).
