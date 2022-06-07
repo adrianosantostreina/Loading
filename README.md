@@ -48,7 +48,9 @@ end;
 ```
 
 Compile the project, run it and click the Load button.<br>
-<img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
+<p align="center">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
+</p>  
 
 
 
