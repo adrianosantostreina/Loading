@@ -124,7 +124,7 @@ O método Show contém todo o código para criar os círculos em tempo de execu�
 
 
 ## Idiomas da documentação
-[Inglês (pt)](https://github.com/adrianosantostreina/Loading/blob/main/README.md)<br>
+[Inglês (en)](https://github.com/adrianosantostreina/Loading/blob/main/README.md)<br>
 [Português (ptBR)](https://github.com/adrianosantostreina/Loading/blob/main/README-ptBR.md)<br>
 
 ## ⚠️ Licença
