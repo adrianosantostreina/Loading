@@ -17,7 +17,7 @@ chefe instale github.com/adrianosantostreina/Loading
 Declare Loading na seção Uses da unidade onde você deseja fazer a chamada para o método da classe.
 
 ```delphi
-usar
+uses
    Loading;
 ```
 
