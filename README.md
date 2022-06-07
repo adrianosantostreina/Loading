@@ -69,10 +69,13 @@ The Show method contains all the code to create the circles at runtime. Just mak
   ArcLoad.Stroke.Color                     := TAlphaColorRec.White;
 
   [...]
-  //Arco maior (Outer ARc)
+  //Arco maior (Outer Arc)
   ArcLoadMaior.Stroke.Color                := TAlphaColorRec.White;;
 ```
 
+<p align="center">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print2.png">
+</p>
 
 ## Documentation Languages
 [English (en)](https://github.com/adrianosantostreina/Loading/blob/main/README.md)<br>
