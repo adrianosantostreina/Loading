@@ -21,27 +21,20 @@ use
    Loading;
 ```
 
+<ul>
+<li>Drag a TButtom control onto the Form</li>
+<li>Drag a TTimer control onto the Form*</li>
+</ul>
+
+*The use of Timer in this example is merely didactic, prefer to use TThreads instead of Timers
+
 ```delphi
-procedure TForm5.Button1Click(Sender: TObject);
+procedure TForm2.Button1Click(Sender: TObject);
 var
   LThread: TThread;
 begin
-  LThread :=
-    TThread.CreateAnnonymousThread(
-      procedure()
-      begin
-        TLoading.Show;
-        //Your Code
-        
-        TThread.Synchronize(
-          TThread.CurrentThread,
-          procedure ()
-          begin
-            TLoading.Hide(Self);
-          end;
-        );
-      end
-    )
+  TLoading.Show('Loading customer...');
+  Timer1.Enabled := True;
 end;
 ```
 
