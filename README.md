@@ -14,10 +14,9 @@ boss install github.com/adrianosantostreina/Loading
 ```
 
 ## Use
-Use
 Declare Loading in the Uses section of the unit where you want to make the call to the class's method.
 ```delphi
-use
+uses
    Loading;
 ```
 
