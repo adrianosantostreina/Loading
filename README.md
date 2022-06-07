@@ -47,7 +47,7 @@ begin
 end;
 ```
 
-Compile the project, run it and click the Load button.
+Compile the project, run it and click the Load button.<br>
 <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
 
 
