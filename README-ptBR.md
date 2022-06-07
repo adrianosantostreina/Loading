@@ -18,7 +18,7 @@ Declare Loading na seção Uses da unidade onde você deseja fazer a chamada par
 
 ```delphi
 usar
-   Carregando;
+   Loading;
 ```
 
 <ul>
