@@ -47,6 +47,11 @@ begin
 end;
 ```
 
+Compile the project, run it and click the Load button.
+<img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
+
+
+
 ## Documentation Languages
 [English (en)](https://github.com/adrianosantostreina/Loading/blob/main/README.md)<br>
 [Português (ptBR)](https://github.com/adrianosantostreina/Loading/blob/main/README-ptBR.md)<br>
