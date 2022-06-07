@@ -5,7 +5,7 @@
 </p>
 
 # Loading
-This class was built to make it easy to load images and thumbnails using the file's URL.
+This class is intended to show a Loading image on the device's screen.
 
 ## Installation
 Just register in the Library Path of your Delphi the path of the SOURCE folder of the library, or if you prefer, you can use Boss (dependency manager for Delphi) to perform the installation:
