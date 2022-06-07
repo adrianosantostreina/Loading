@@ -9,20 +9,10 @@ object Form2: TForm2
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
   object Button1: TButton
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
+    Align = Center
     TabOrder = 0
     Text = 'Load'
     OnClick = Button1Click
-  end
-  object Label1: TLabel
-    Align = Center
-    Size.Width = 282.000000000000000000
-    Size.Height = 17.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Center
-    Text = 'Counter'
-    TabOrder = 1
   end
   object Timer1: TTimer
     Enabled = False

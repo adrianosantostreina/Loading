@@ -22,8 +22,11 @@ use
 ```
 
 <ul>
-<li>Drag a TButtom control onto the Form</li>
-<li>Drag a TTimer control onto the Form*</li>
+  <li>Drag a TButtom control onto the Form</li>
+  <li>Drag a TTimer control onto the Form*</li>
+  <li>Set Enable property to False in TTimer</li>
+  <li>Code TButtom's OnClick event as below</li>
+  <li>Code Ttimer's OnTimer event as below</li>
 </ul>
 
 *The use of Timer in this example is merely didactic, prefer to use TThreads instead of Timers
@@ -35,6 +38,12 @@ var
 begin
   TLoading.Show('Loading customer...');
   Timer1.Enabled := True;
+end;
+
+procedure TForm2.Timer1Timer(Sender: TObject);
+begin
+  TLoading.Hide;
+  Timer1.Enabled := False;
 end;
 ```
 

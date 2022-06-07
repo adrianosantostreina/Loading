@@ -22,7 +22,6 @@ uses
 type
   TForm2 = class(TForm)
     Button1: TButton;
-    Label1: TLabel;
     Timer1: TTimer;
     procedure Button1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
