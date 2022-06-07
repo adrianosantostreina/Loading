@@ -1,0 +1,11 @@
+{
+	"name": "Simple Sample",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "./src",
+	"projects": [],
+	"dependencies": {
+		"http://github.com/adrianosantostreina/loading": "^1.0.1"
+	}
+}
