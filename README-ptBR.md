@@ -47,7 +47,7 @@ fim;
 
 Compile o projeto, execute-o e clique no botão Carregar.<br>
 <p align="center">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print.png">
 </p>
 
 ## Alterar mensagens
@@ -92,8 +92,8 @@ end;
 ```
 
 <p align="center">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print3.png">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print4.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print3.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print4.png">
 </p>
 
 ## Personalizando o Círculo de Carga
@@ -118,7 +118,7 @@ O método Show contém todo o código para criar os círculos em tempo de execu�
 ```
 
 <p align="center">
-  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/Sample/image/print2.png">
+  <img alt="Print" src="https://github.com/adrianosantostreina/Loading/blob/main/image/print2.png">
 </p>
 
 
