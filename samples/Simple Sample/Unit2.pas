@@ -58,7 +58,7 @@ end;
 
 procedure TForm2.Timer1Timer(Sender: TObject);
 begin
-  TLoading.Hide;
+  TLoading.Hide(Self);
   Timer1.Enabled := False;
 end;
 
@@ -66,14 +66,14 @@ procedure TForm2.Timer2Timer(Sender: TObject);
 begin
   Inc(LTime);
   if LTime = 2 then
-    TLoading.ChangeMessage('Loading products...')
+    TLoading.ChangeText('Loading products...')
   else if LTime = 5 then
-    TLoading.ChangeMessage('Loading settings...')
+    TLoading.ChangeText('Loading settings...')
   else if LTime = 7 then
-    TLoading.ChangeMessage('Ending...')
+    TLoading.ChangeText('Ending...')
   else if LTime = 10 then
   begin
-    TLoading.Hide;
+    TLoading.Hide(Self);
     Timer2.Enabled := False;
   end;
 end;

@@ -21,6 +21,7 @@ object Form2: TForm2
     Size.PlatformDefault = False
     TabOrder = 0
     Text = 'Load'
+    TextSettings.Trimming = None
     OnClick = Button1Click
   end
   object Change: TButton
@@ -36,6 +37,7 @@ object Form2: TForm2
     Size.PlatformDefault = False
     TabOrder = 4
     Text = 'Change'
+    TextSettings.Trimming = None
     OnClick = ChangeClick
   end
   object Timer1: TTimer
